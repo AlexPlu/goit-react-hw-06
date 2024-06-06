@@ -1,11 +1,14 @@
-import { FaUser, FaPhone, FaRegTrashCan } from "react-icons/fa6";
+import { useDispatch } from "react-redux";
+import { FaUser, FaPhone, FaTrash } from "react-icons/fa";
+import { deleteContact } from "../../redux/contactsSlice";
 import "./Contact.css";
 
-const Contact = ({ contact, onDeleteContact }) => {
+const Contact = ({ contact }) => {
+  const dispatch = useDispatch();
   const { id, name, number } = contact;
 
   const handleDelete = () => {
-    onDeleteContact(id);
+    dispatch(deleteContact(id));
   };
 
   return (
@@ -20,7 +23,7 @@ const Contact = ({ contact, onDeleteContact }) => {
         {number}
       </p>
       <button onClick={handleDelete}>
-        <FaRegTrashCan className="contact-icon" />
+        <FaTrash className="contact-icon" />
         Delete
       </button>
     </div>
